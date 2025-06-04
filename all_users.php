@@ -20,9 +20,9 @@ $sql = "SELECT * FROM users";
 
 $result = mysqli_query($conn, $sql);
 
-var_dump($result);
+$allUsers = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-
+//var_dump($allUsers);
 
 ?>
 
@@ -39,6 +39,17 @@ var_dump($result);
     <main>
         <h1>All users</h1>
         <br>
+        <?php if(empty($allUsers)):?>
+            <p>database is empty</p>
+        <?php else: ?>
+            <ul>
+                <?php foreach($allUsers as $oneUser): ?>
+                    <li><?php echo $oneUser['first_name']." ".$oneUser['last_name']; ?></li>
+                <?php endforeach; ?>
+            </ul>
+
+
+        <?php endif; ?>
         <a href="index.php">Back to</a>
     </main>
     <footer></footer>
