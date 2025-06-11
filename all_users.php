@@ -29,12 +29,23 @@ $allUsers = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <p>database is empty</p>
         <?php else: ?>
             <ul>
-                <?php foreach($allUsers as $oneUser): ?>
-                    <li><?php echo $oneUser['first_name']." ".$oneUser['last_name']; ?></li>
-                    <a href="one_user.php?id= <?php echo $oneUser['id']; ?> ">more info..</a>
-                <?php endforeach; ?>
+                
             </ul>
-
+            <table>
+                <tr>
+                    <td>Meno</td>
+                    <td>Priezvisko</td>
+                    <td>Vek</td>
+                    <td>Operacia</td>
+                </tr>
+                <?php foreach($allUsers as $oneUser): ?>
+                    <tr>
+                        <td><?php echo $oneUser['first_name'];?></td>
+                        <td><?php echo $oneUser['last_name']; ?></td>
+                        <td><a href="one_user.php?id= <?php echo $oneUser['id']; ?> ">more info..</a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
 
         <?php endif; ?>
         <a href="index.php">Back to</a>
